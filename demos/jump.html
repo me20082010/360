@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style media="screen">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			#container {
+				width: 500px;
+				height: 500px;
+				border: 1px solid black;
+				position: relative;
+				margin: 20px;
+			}
+
+			#lines {
+				list-style-type: none;
+				position: absolute;
+				bottom: 0;
+				left: 20px;
+			}
+
+			#lines li {
+				/*float: left;*/
+				display:inline-block;
+				width: 20px;
+				height: 200px;
+				/*border: 1px solid red;*/
+        background: red;
+				margin: 0 2px;
+				/*-webkit-transition: .05s;
+				transition: .05s;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<ul id="lines">
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var a = [];
+				var stml = '';
+				var oUl = document.getElementById('lines');
+				for (var i = 0; i <15; i++) {
+					stml += '<li></li>';
+					a[i] = {};
+					a[i].length = i*12;
+					a[i].speed = 6;
+//					console.log(a[i].speed);
+				}
+				oUl.innerHTML = stml;
+				var tem=0;
+				console.time('hello');
+				var t=setInterval(function() {
+					for (var i = 0; i < a.length; i++) {
+						if (a[i].length > 200) {
+							a[i].speed = -6;
+						}
+						if(a[i].length< 0){
+							a[i].speed = 6;
+						}
+						a[i].length += a[i].speed;
+						oUl.children[i].style.height=a[i].length+'px';
+//						console.log(a[i].length);
+					}
+					if(tem==200){
+						clearInterval(t);
+					}
+					tem++;
+				}, 40);
+				console.timeEnd('hello');
+			}
+		</script>
+	</body>
+
+</html>
