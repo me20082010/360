@@ -4,6 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>test</title>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 		<style media="screen">
 			* {
 				margin: 0;
@@ -50,11 +51,11 @@
 				var a = [];
 				var stml = '';
 				var oUl = document.getElementById('lines');
-				for (var i = 0; i <15; i++) {
+				for (var i = 0; i <9; i++) {
 					stml += '<li></li>';
 					a[i] = {};
 					a[i].length = i*12;
-					a[i].speed = 6;
+					a[i].speed = 5
 //					console.log(a[i].speed);
 				}
 				oUl.innerHTML = stml;
@@ -62,17 +63,20 @@
 				console.time('hello');
 				var t=setInterval(function() {
 					for (var i = 0; i < a.length; i++) {
+						$()
+						
+						
 						if (a[i].length > 200) {
-							a[i].speed = -6;
+							a[i].speed = -5;
 						}
-						if(a[i].length< 0){
-							a[i].speed = 6;
+						if(a[i].length<40){
+							a[i].speed = 5;
 						}
 						a[i].length += a[i].speed;
 						oUl.children[i].style.height=a[i].length+'px';
 //						console.log(a[i].length);
 					}
-					if(tem==200){
+					if(tem==500){
 						clearInterval(t);
 					}
 					tem++;
