@@ -5,48 +5,8 @@
 	<meta charset="utf-8">
 	<title>test</title>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<style media="screen">
-		* {
-			margin: 0;
-			padding: 0;
-		}
-		
-		#container {
-			width: 500px;
-			height: 500px;
-			border: 1px solid black;
-			position: relative;
-			margin: 20px;
-		}
-		
-		#lines {
-			list-style-type: none;
-			position: absolute;
-			bottom: 0;
-			left: 20px;
-		}
-		
-		#lines li {
-			/*float: left;*/
-			display: inline-block;
-			width: 20px;
-			height: 200px;
-			/*border: 1px solid $color-blue;*/
-			background: red;
-			/*margin: 0 2px;*/
-			/*-webkit-transition: .05s;
-				transition: .05s;*/
-		}
-		
-		#item {
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 20px;
-			height: 20px;
-			background: rgb(129, 72, 21);
-		}
-	</style>
+	<link rel="stylesheet" href="jump.css" media="screen" title="no title" charset="utf-8">
+	<script src="jump.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -57,49 +17,7 @@
 		<div id="item">
 		</div>
 	</div>
-	<script type="text/javascript">
-		window.onload = function() {
-			var a = [];
-			var stml = '';
-			var oUl = document.getElementById('lines');
-			var oItem = document.getElementById('item');
-			var item = {
-				index: 0,
-				value: 0
-			};
 
-
-
-			for (var i = 0; i < 9; i++) {
-				stml += '<li></li>';
-				a[i] = {};
-				a[i].length = i * 12;
-				a[i].speed = 5
-					//					console.log(a[i].speed);
-			}
-			oUl.innerHTML = stml;
-			// var tem=0;
-			var t = setInterval(function() {
-				for (var i = 0; i < a.length; i++) {
-					if (a[i].length > 200) {
-						a[i].speed = -5;
-					}
-					if (a[i].length < 40) {
-						a[i].speed = 5;
-					}
-					a[i].length += a[i].speed;
-					if(item.index==i){
-						item.value=a[i].length;
-						console.log(item.value);
-					}
-					oUl.children[i].style.height = a[i].length + 'px';
-					oItem.style.bottom=(item.value)+'px';
-					oItem.style.left=20+'px';
-				}
-
-			}, 40);
-		}
-	</script>
 </body>
 
 </html>
