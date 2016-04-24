@@ -1,4 +1,12 @@
 window.onload = function() {
+  
+    var speed=1.8;
+    var column={
+      num:8,
+      max:200,
+      min:30,
+      
+    }
     var a = [];
     var item = {
         index: 0,
@@ -11,25 +19,24 @@ window.onload = function() {
 
 
     var stml = '';
-    for (var i = 0; i < 9; i++) { //柱子的个数
+    for (var i = 0; i < column.num; i++) { //柱子的个数
         stml += '<li></li>';
         a[i] = {};
-        a[i].length = i * 20; //柱子初始高度
-        a[i].speed = 2; //柱子生长速度
+        a[i].length =(column.max/column.num)*i*0.9+column.min; //柱子初始高度
+        a[i].speed = speed; //柱子生长速度
         //					console.log(a[i].speed);
     }
 
     oUl.innerHTML = stml;
     var tem = 0;
 
-
     var move = function() {
         for (var i = 0; i < a.length; i++) {
-            if (a[i].length > 200) { //柱子的最高高度
-                a[i].speed = -2;
+            if (a[i].length > column.max) { //柱子的最高高度
+                a[i].speed = -speed;
             }
-            if (a[i].length < 30) { //柱子的最低高度
-                a[i].speed = 2;
+            if (a[i].length < column.min) { //柱子的最低高度
+                a[i].speed = speed;
             }
 
             a[i].length += a[i].speed;
@@ -39,7 +46,7 @@ window.onload = function() {
             }
             oUl.children[i].style.height = a[i].length + 'px';
             oItem.style.bottom = (item.value) + 'px';
-            oItem.style.left = 20 * (item.index + 1) + 'px';
+            oItem.style.left = 20+50 * (item.index ) + 'px';
         }
         tem++;
         if (tem < 2000) {
